@@ -67,7 +67,7 @@ form fieldset {
   margin-bottom: 2.5rem;
 }
 
-form legend {
+form .legend {
   color: black;
   background-color: var(--main-color);
   width: 100%;
@@ -89,10 +89,21 @@ form legend {
   margin: 1.5rem;
 }
 
-.field input {
+.field input,
+select {
   margin: 1.5rem;
 }
 
 .field label {
   margin-bottom: 2rem;
+}
+
+/*Registro*/
+.legends-en-registro {
+  text-align: center;
+  color: black;
+  background-color: white;
+  font-size: 120%;
+  margin: 0;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Ingresar al Sistema</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h3 class="text-center">ADMIN - Registrar Nuevo Usuario</h3>
+    </header>
+    <section class="iniciar-sesion">
+      <form class="form">
+        <fieldset id="fieldset-registro">
+          <legend class="legend">Datos Usuario</legend>
+          <div class="field">
+            <legend id="legend-obligatorio" class="legends-en-registro">
+              Los campos con el símbolo * son obligatorios de rellenar
+            </legend>
+
+            <label>Selecccione el rol del usuario: </label>
+            <select name="rol" required>
+              <option value="du">Dueño</option>
+              <option value="ma">Maitre</option>
+              <option value="mo">Mozo</option>
+              <option value="ca">Caja</option>
+            </select>
+
+            <legend id="legend-dni" class="legends-en-registro">*</legend>
+            <input
+              type="number"
+              id="dni"
+              class="input-registro"
+              placeholder="DNI"
+              required
+            />
+
+            <legend id="legend-nombre-completo" class="legends-en-registro">
+              *
+            </legend>
+            <input
+              type="text"
+              id="apellido"
+              class="input-registro"
+              placeholder="Nombre Completo"
+              required
+            />
+
+            <legend id="legend-usuario" class="legends-en-registro">*</legend>
+            <input
+              type="text"
+              id="nombre-usuario"
+              class="input-registro"
+              placeholder="Usuario"
+              required
+            />
+
+            <legend id="legend-contrasena" class="legends-en-registro">
+              *
+            </legend>
+            <input
+              type="password"
+              id="contrasena"
+              class="input-registro"
+              placeholder="Contraseña"
+              required
+            />
+          </div>
+        </fieldset>
+        <a><button id="boton-registrarse" class="btn">Registrar</button></a>
+      </form>
+    </section>
+  </body>
+</html>
