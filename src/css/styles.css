@@ -1,0 +1,98 @@
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* 1rem = 10px */
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/*Globales */
+body {
+  font-size: 1.5rem;
+  line-height: 2;
+}
+
+/* Variables */
+:root {
+  --main-color: #ffc1ff;
+}
+
+/*Utilidades*/
+
+.text-center {
+  text-align: center;
+}
+
+.btn {
+  display: block;
+  background-color: var(--main-color);
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 900;
+  padding: 1rem;
+  transition: background-color 0.3s ease-out;
+  text-align: center;
+  border: none;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: #ff97d9;
+  cursor: pointer;
+}
+
+/*Login*/
+
+.iniciar-sesion {
+  margin-bottom: 10rem;
+}
+
+header h3 {
+  font-size: 2.5rem;
+  padding: 5rem;
+}
+
+.form {
+  max-width: 60rem;
+  margin: 0 auto 0 auto;
+}
+
+form fieldset {
+  border-color: gray;
+  border-width: 0.1rem;
+  border-style: solid;
+  margin-bottom: 2.5rem;
+}
+
+form legend {
+  color: black;
+  background-color: var(--main-color);
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 4rem;
+  padding: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.field label {
+  font-size: 2rem;
+  margin: 1.5rem;
+}
+
+.field input {
+  margin: 1.5rem;
+}
+
+.field label {
+  margin-bottom: 2rem;
+}

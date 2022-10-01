@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Ingresar al Sistema</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h3 class="text-center">Ingresar al Sistema</h3>
+    </header>
+    <section class="iniciar-sesion">
+      <form class="form">
+        <fieldset>
+          <legend>Tus Datos</legend>
+          <div class="field">
+            <label for="subject">Usuario y Contraseña:</label>
+            <input
+              id="usuario-ingresado"
+              type="text"
+              placeholder="Usuario"
+              required
+            />
+            <input
+              id="contrasena-ingresado"
+              type="password"
+              placeholder="Contraseña"
+              required
+            />
+          </div>
+        </fieldset>
+
+        <a><button id="boton-ingresar" class="btn">Ingresar</button></a>
+      </form>
+    </section>
+  </body>
+</html>
