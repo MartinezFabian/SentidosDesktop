@@ -219,3 +219,22 @@ a:hover {
   font-family: "Poppins", sans-serif;
   color: black;
 }
+
+/* Pedidos Pendientes */
+.container-pedidos-pendientes {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.pedido-pendiente {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px dashed rgb(149, 149, 149);
+}
+
+.item {
+  padding-right: 5rem;
+}
