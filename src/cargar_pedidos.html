@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Cargar Pedidos</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h3 class="text-center">Cargar Pedidos</h3>
+    </header>
+
+    <div class="main-nav-container">
+      <nav class="main-nav container">
+        <a href="cargar_pedidos.html">Cargar Pedido</a>
+        <a href="pedidos_pendientes.html">Pedidos Pendientes</a>
+        <a href="reservas.html">Mesas Reservadas</a>
+        <a href="clientes.html">Listado Clientes</a>
+        <a href="ingresos.html">Informe de Ingresos</a>
+        <a href="registro.html">Registrar Usuario</a>
+      </nav>
+    </div>
+
+    <div>
+      <section class="formulario">
+        <form class="form">
+          <fieldset id="fieldset-registro">
+            <legend class="legend">Cargar Pedido</legend>
+            <div class="field">
+              <label>Número de Mesa: </label>
+              <input type="number" id="numero-mesa" required />
+
+              <label>Nombre del cliente: </label>
+              <input type="text" id="nombre-cliente" required />
+
+              <label>Pedido: </label>
+
+              <section id="menu" class="menu">
+                <div>
+                  <div class="container-flex-menu">
+                    <div class="menu-item">
+                      <img
+                        src="/assets/producto1.jpg"
+                        class="menu-img"
+                        alt="producto1"
+                      />
+                      <div class="menu-content">
+                        <p>Pizza Calbresa</p>
+                        <span>$1200</span>
+                      </div>
+                      <div class="menu-ingredients">
+                        Queso mozzarella, Morrón , Salamin
+                      </div>
+                    </div>
+                    <label for="cantidad-producto1"
+                      >Cantidad:
+                      <input
+                        type="number"
+                        name="cantidad-producto1"
+                        value="0"
+                      />
+                    </label>
+                  </div>
+
+                  <div class="container-flex-menu">
+                    <div class="menu-item">
+                      <img
+                        src="/assets/producto2.jpg"
+                        class="menu-img"
+                        alt="producto2"
+                      />
+                      <div class="menu-content">
+                        <p>Hamburguesa</p>
+                        <span>$699</span>
+                      </div>
+                      <div class="menu-ingredients">
+                        Pan, Carne, Lechuga, Tomate, Queso y Cebolla
+                      </div>
+                    </div>
+                    <label for="cantidad-producto2"
+                      >Cantidad:
+                      <input
+                        type="number"
+                        name="cantidad-producto2"
+                        value="0"
+                      />
+                    </label>
+                  </div>
+
+                  <div class="container-flex-menu">
+                    <div class="menu-item">
+                      <img
+                        src="/assets/producto3.jpg"
+                        class="menu-img"
+                        alt="producto3"
+                      />
+                      <div class="menu-content">
+                        <p>Porción Torta</p>
+                        <span>$420</span>
+                      </div>
+                      <div class="menu-ingredients">
+                        Chocolate, dulce de leche, almendras
+                      </div>
+                    </div>
+                    <label for="cantidad-producto3"
+                      >Cantidad:
+                      <input
+                        type="number"
+                        name="cantidad-producto3"
+                        value="0"
+                      />
+                    </label>
+                  </div>
+
+                  <div class="container-flex-menu">
+                    <div class="menu-item">
+                      <img
+                        src="/assets/producto4.jpg"
+                        class="menu-img"
+                        alt="producto4"
+                      />
+                      <div class="menu-content">
+                        <p>Papas Fritas</p>
+                        <span>$390</span>
+                      </div>
+                      <div class="menu-ingredients">
+                        Papas y salsa de la casa
+                      </div>
+                    </div>
+                    <label for="cantidad-producto4"
+                      >Cantidad:
+                      <input
+                        type="number"
+                        name="cantidad-producto4"
+                        value="0"
+                      />
+                    </label>
+                  </div>
+
+                  <div class="container-flex-menu">
+                    <div class="menu-item">
+                      <img
+                        src="/assets/producto5.jpg"
+                        class="menu-img"
+                        alt="producto5"
+                      />
+                      <div class="menu-content">
+                        <p>Pizza Pepperoni</p>
+                        <span>$1360</span>
+                      </div>
+                      <div class="menu-ingredients">
+                        Queso, Pepperoni, Albahaca
+                      </div>
+                    </div>
+                    <label for="cantidad-producto5"
+                      >Cantidad:
+                      <input
+                        type="number"
+                        name="cantidad-producto5"
+                        value="0"
+                      />
+                    </label>
+                  </div>
+
+                  <div class="container-flex-menu">
+                    <div class="menu-item">
+                      <img
+                        src="/assets/producto6.jpg"
+                        class="menu-img"
+                        alt="producto6"
+                      />
+                      <div class="menu-content">
+                        <p>Asado</p>
+                        <span>$1540</span>
+                      </div>
+                      <div class="menu-ingredients">Vacio, Salsa Barbacoa</div>
+                    </div>
+                    <label for="cantidad-producto6"
+                      >Cantidad:
+                      <input
+                        type="number"
+                        name="cantidad-producto6"
+                        value="0"
+                      />
+                    </label>
+                  </div>
+
+                  <div class="container-flex-menu">
+                    <div class="menu-item">
+                      <img
+                        src="/assets/producto7.jpg"
+                        class="menu-img"
+                        alt="producto7"
+                      />
+                      <div class="menu-content">
+                        <p>Patas de Pollo</p>
+                        <span>$690</span>
+                      </div>
+                      <div class="menu-ingredients">
+                        Patas de pollo con salsa de la casa
+                      </div>
+                    </div>
+                    <label for="cantidad-producto7"
+                      >Cantidad:
+                      <input
+                        type="number"
+                        name="cantidad-producto7"
+                        value="0"
+                      />
+                    </label>
+                  </div>
+
+                  <div class="container-flex-menu">
+                    <div class="menu-item">
+                      <img
+                        src="/assets/producto8.jpg"
+                        class="menu-img"
+                        alt="producto8"
+                      />
+                      <div class="menu-content">
+                        <p>Ensalada</p>
+                        <span>$350</span>
+                      </div>
+                      <div class="menu-ingredients">
+                        Pasta, Perejil, Papas Gratinadas y Morrón
+                      </div>
+                    </div>
+                    <label for="cantidad-producto8"
+                      >Cantidad:
+                      <input
+                        type="number"
+                        name="cantidad-producto8"
+                        value="0"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </fieldset>
+          <a
+            ><button id="btn-buscar-reservas" class="btn">
+              Confirmar Pedido
+            </button></a
+          >
+        </form>
+      </section>
+    </div>
+  </body>
+</html>

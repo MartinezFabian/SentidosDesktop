@@ -139,3 +139,81 @@ a:hover {
 .input-date {
   margin: 5rem 5rem 10rem 5rem;
 }
+
+/*Cargar Pedidos*/
+
+.menu {
+  padding: 0;
+  text-align: center;
+  border-radius: 5rem;
+}
+
+.container-flex-menu {
+  display: flex;
+}
+
+.container-flex-menu .menu-item {
+  flex-grow: 1;
+}
+
+.container-flex-menu label,
+.container-flex-menu input {
+  align-self: center;
+  width: 10rem;
+}
+.menu .menu-item {
+  margin-top: 5rem;
+}
+
+.menu .menu-img {
+  width: 14rem;
+  border-radius: 48%;
+  float: left;
+  border: 5px solid rgba(255, 255, 255, 0.2);
+}
+
+.menu .menu-content {
+  margin-left: 8rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.menu .menu-content::after {
+  content: "......................................................................"
+    "...................................................................."
+    "....................................................................";
+  position: absolute;
+  left: 2rem;
+  right: 0;
+  top: -4px;
+  z-index: 1;
+  color: black;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.menu .menu-content p {
+  margin-right: 10px;
+  background: #1a1814;
+  z-index: 3;
+  font-weight: 700;
+  color: white;
+}
+
+.menu .menu-content span {
+  background: #1a1814;
+  z-index: 3;
+  padding: 0 10px;
+  font-weight: 600;
+  color: white;
+  height: 3rem;
+}
+
+.menu .menu-ingredients {
+  margin-left: 8rem;
+  font-style: italic;
+  font-size: 1.4rem;
+  font-family: "Poppins", sans-serif;
+  color: black;
+}
