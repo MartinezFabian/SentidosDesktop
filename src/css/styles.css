@@ -15,9 +15,20 @@ body {
   line-height: 2;
 }
 
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
 /* Variables */
 :root {
   --main-color: #ffc1ff;
+  --second-color: #ff97d9;
 }
 
 /*Utilidades*/
@@ -40,7 +51,7 @@ body {
 }
 
 .btn:hover {
-  background-color: #ff97d9;
+  background-color: var(--second-color);
   cursor: pointer;
 }
 
@@ -52,7 +63,7 @@ body {
 
 header h3 {
   font-size: 2.5rem;
-  padding: 5rem;
+  padding: 4rem;
 }
 
 .form {
@@ -69,7 +80,7 @@ form fieldset {
 
 form .legend {
   color: black;
-  background-color: var(--main-color);
+  background-color: var(--second-color);
   width: 100%;
   text-align: center;
   text-transform: uppercase;
@@ -98,6 +109,18 @@ select {
   margin-bottom: 2rem;
 }
 
+/* Nav Principal */
+.main-nav-container {
+  border-top: 0.1rem solid #dedede;
+}
+
+.main-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 5rem;
+}
+
 /*Registro*/
 .legends-en-registro {
   text-align: center;
@@ -106,4 +129,8 @@ select {
   font-size: 120%;
   margin: 0;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+a:hover {
+  color: #7d2181;
 }
