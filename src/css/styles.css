@@ -173,7 +173,7 @@ a:hover {
 }
 
 .menu .menu-content {
-  margin-left: 8rem;
+  margin-left: 5rem;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
@@ -187,7 +187,7 @@ a:hover {
   position: absolute;
   left: 2rem;
   right: 0;
-  top: -4px;
+  top: 4px;
   z-index: 1;
   color: black;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -199,6 +199,8 @@ a:hover {
   z-index: 3;
   font-weight: 700;
   color: white;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 .menu .menu-content span {
