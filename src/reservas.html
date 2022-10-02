@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Reservas</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h3 class="text-center">Mesas Reservadas</h3>
+    </header>
+
+    <div class="main-nav-container">
+      <nav class="main-nav container">
+        <a href="cargar_pedidos.html">Cargar Pedido</a>
+        <a href="pedidos_pendientes.html">Pedidos Pendientes</a>
+        <a href="reservas.html">Mesas Reservadas</a>
+        <a href="clientes.html">Listado Clientes</a>
+        <a href="ingresos.html">Informe de Ingresos</a>
+        <a href="registro.html">Registrar Usuario</a>
+      </nav>
+    </div>
+
+    <div>
+      <form class="form">
+        Seleccione la fecha en la que quiere ver las reservas:
+        <input class="input-date" type="date" id="fecha-reserva" required />
+        <a><button id="btn-buscar-reservas" class="btn">Buscar</button></a>
+      </form>
+    </div>
+  </body>
+</html>
