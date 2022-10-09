@@ -12,7 +12,7 @@ const createWindow = () => {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile("src/Registro.html");
+  mainWindow.loadFile("./src/view/Registro.html");
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
