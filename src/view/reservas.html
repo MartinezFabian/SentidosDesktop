@@ -3,10 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
     <title>Reservas</title>
     <link rel="stylesheet" href="../css/normalize.css" />
     <link rel="stylesheet" href="../css/styles.css" />
@@ -27,7 +23,7 @@
       </nav>
     </div>
 
-    <div>
+    <div id="contenedor_mesas_reservadas">
       <form class="form">
         Seleccione la fecha en la que quiere ver las reservas:
         <input class="input-date" type="date" id="fecha-reserva" required />
@@ -35,4 +31,5 @@
       </form>
     </div>
   </body>
+  <script type="module" src="../js/mesasReservadas.js"></script>
 </html>

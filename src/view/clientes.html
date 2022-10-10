@@ -3,10 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
     <title>Clientes</title>
     <link rel="stylesheet" href="../css/normalize.css" />
     <link rel="stylesheet" href="../css/styles.css" />
@@ -27,7 +23,7 @@
       </nav>
     </div>
 
-    <div class="container container-pedidos-pendientes">
+    <div class="container container-pedidos-pendientes" id="contenedor_listado_clientes">
       <div class="pedido-pendiente">
         <div class="item">
           <p>Juan Perez</p>
@@ -49,4 +45,5 @@
       </div>
     </div>
   </body>
+  <script type="module" src="../js/listaClientes.js"></script>
 </html>
