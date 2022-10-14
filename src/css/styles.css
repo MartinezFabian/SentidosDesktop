@@ -220,6 +220,19 @@ a:hover {
   color: black;
 }
 
+.container-busqueda {
+  display: flex;
+}
+
+.container-busqueda input {
+  flex-grow: 1;
+  height: 3rem;
+  align-self: center;
+}
+.container-busqueda a {
+  align-self: center;
+}
+
 /* Pedidos Pendientes */
 .container-pedidos-pendientes {
   display: flex;
