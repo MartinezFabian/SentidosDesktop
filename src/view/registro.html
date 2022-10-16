@@ -3,10 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
     <title>Ingresar al Sistema</title>
     <link rel="stylesheet" href="../css/normalize.css" />
     <link rel="stylesheet" href="../css/styles.css" />
@@ -38,11 +34,13 @@
             </legend>
 
             <label>Selecccione el rol del usuario: </label>
-            <select name="rol" required>
-              <option value="du">Dueño</option>
-              <option value="ma">Maitre</option>
-              <option value="mo">Mozo</option>
-              <option value="ca">Caja</option>
+            <select id="rol" name="rol" required>
+              <option value="dueño">Dueño</option>
+              <option value="maitre">Maitre</option>
+              <option value="mozo">Mozo</option>
+              <option value="caja">Caja</option>
+              <option value="chef">Chef</option>
+              <option value="cliente">Cliente</option>
             </select>
 
             <legend id="legend-dni" class="legends-en-registro">*</legend>
@@ -54,18 +52,18 @@
               required
             />
 
-            <legend id="legend-nombre-completo" class="legends-en-registro">
+            <legend id="legend-apellido" class="legends-en-registro">
               *
             </legend>
             <input
               type="text"
               id="apellido"
               class="input-registro"
-              placeholder="Nombre Completo"
+              placeholder="Apellido"
               required
             />
 
-            <legend id="legend-usuario" class="legends-en-registro">*</legend>
+            <legend id="legend-nombre-usuario" class="legends-en-registro">*</legend>
             <input
               type="text"
               id="nombre-usuario"
@@ -90,4 +88,5 @@
       </form>
     </section>
   </body>
+  <script type="module" src="../js/registrarNuevoUsuario.js"></script>
 </html>
