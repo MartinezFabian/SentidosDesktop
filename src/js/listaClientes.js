@@ -10,9 +10,11 @@ listaUsuarios.getUsuarioRegistrado()
         console.log(listaUsuarios);
 
         listaUsuarios.forEach( cliente => {
-            const clientesAgendados = document.createElement('h3');
-            clientesAgendados.innerText = `${cliente.nombre}`;
-            listadoClientes.appendChild(clientesAgendados);
+            if(cliente.rol == 'cliente') {
+                const clientesAgendados = document.createElement('h3');
+                clientesAgendados.innerText = `${cliente.nombre}`;
+                listadoClientes.appendChild(clientesAgendados);
+            }
         })
 
     })
