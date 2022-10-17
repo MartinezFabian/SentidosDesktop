@@ -70,7 +70,8 @@ listaPedidosPendientes.getPedidosPendientes()
 
                 listadoPedidosPendientes.appendChild(pedidoPendiente);
 
-                botonGenerarFactura.addEventListener('click', () => {
+                botonGenerarFactura.addEventListener('click', (evento) => {
+                    evento.preventDefault();
                     deshabilitarTodosLosBotones();
 
                     const refObtenerDatosPedido = ref(database, `pedidosPendientes/pedido${pedido.id}/estadoPago`);

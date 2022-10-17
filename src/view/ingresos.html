@@ -36,10 +36,10 @@
               <input type="date" id="fecha-rango-inicio" required />
 
               <label>Seleccione fecha final: </label>
-              <input type="date" id="fecha-rango-inicio" required />
+              <input type="date" id="fecha-rango-final" required />
 
               <label>Seleccione el tipo de pago: </label>
-              <select name="tipo-pago" required>
+              <select id="forma_pago" name="tipo-pago" required>
                 <option value="debito">Tarjeta de débito</option>
                 <option value="credito">Tarjeta de crédito</option>
                 <option value="digital">Plataforma digital</option>
@@ -48,7 +48,7 @@
             </div>
           </fieldset>
           <a
-            ><button id="btn-buscar-reservas" class="btn">
+            ><button id="btn_generar_informe" class="btn">
               Generar Informe
             </button></a
           >
