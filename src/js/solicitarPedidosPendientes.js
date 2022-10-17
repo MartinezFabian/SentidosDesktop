@@ -78,7 +78,7 @@ listaPedidosPendientes.getPedidosPendientes()
 
                     const pagoRealizado = new PedidosPagadosService;
 
-                        const pedidoPagadoRef = ref(database, 'pedidosPagados');
+                        const pedidoPagadoRef = ref(database, `pedidosPagados/pedidoPagado${pedido.id}`);
                         const actualizarCantidadPedidosPagadosRef = ref(database, 'pedidosPagados/cantidadPedidosPagados');
     
                         let fechaActual = new Date();
@@ -95,6 +95,7 @@ listaPedidosPendientes.getPedidosPendientes()
     
                         pagoRealizado.getCantidadPedidosPagados()
                             .then(cantidad => {
+
                                 const pedidoPagado = {
                                     id: cantidad + 1,
                                     mesa: pedido.mesa,
