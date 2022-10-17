@@ -96,12 +96,12 @@ botonConfirmarPedido.addEventListener('click', (evento) => {
                         precioTotal += parseInt(producto.precio) * parseInt(producto.cantidad);
                     });
 
-
                     const nuevoPedido = {
                         id: cantidad + 1,
                         mesa: inputMesa.value,
                         nombreCliente: inputNombreCliente.value,
                         montoTotal: precioTotal,
+                        estadoPago: "sin pagar",
                         productosSolicitados: listaProductosSolicitados
                     };
 

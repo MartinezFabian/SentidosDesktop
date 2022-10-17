@@ -1,4 +1,7 @@
+import { database } from './conexionBD.js';
+import { ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-database.js";
 import PedidosPendientesService from './pedidosPendientesService.js';
+import PedidosPagadosService from './pedidosPagadosService.js';
 
 const listadoPedidosPendientes = document.getElementById('contenedor_pedidos_pendientes');
 
@@ -10,25 +13,27 @@ listaPedidosPendientes.getPedidosPendientes()
         console.log(listaPedidos);
 
         listaPedidos.forEach( pedido => {
-            if(pedido.mesa != undefined) {
+            if(pedido.mesa != undefined && pedido.estadoPago == 'sin pagar') {
                 const pedidoPendiente = document.createElement('div');
                 pedidoPendiente.className = 'pedido-pendiente';
+                pedidoPendiente.id = `pedido${pedido.id}`;
                 const numeroMesa = document.createElement('div');
                 numeroMesa.className = 'item';
-                numeroMesa.innerText = `Mesa ${pedido.mesa}`
+                numeroMesa.innerText = `Mesa ${pedido.mesa}`;
                 pedidoPendiente.appendChild(numeroMesa);
                 const nombreCliente = document.createElement('div');
                 nombreCliente.className = 'item';
-                nombreCliente.innerText = `${pedido.nombreCliente}`
+                nombreCliente.innerText = `${pedido.nombreCliente}`;
                 pedidoPendiente.appendChild(nombreCliente);
                 const montoTotal = document.createElement('div');
                 montoTotal.className = 'item';
-                montoTotal.innerText = `$${pedido.montoTotal}`
+                montoTotal.innerText = `$${pedido.montoTotal}`;
                 pedidoPendiente.appendChild(montoTotal);
                 const formaPago = document.createElement('div');
                 formaPago.className = 'item';
 
                 const selectorFormaPago = document.createElement('select');
+                selectorFormaPago.id = `formaPago${pedido.id}`;
 
                 const opcion1 = document.createElement('option');
                 opcion1.value = 'debito';
@@ -64,8 +69,60 @@ listaPedidosPendientes.getPedidosPendientes()
                 pedidoPendiente.appendChild(contenedorBotonGenerarFactura);
 
                 listadoPedidosPendientes.appendChild(pedidoPendiente);
+
+                botonGenerarFactura.addEventListener('click', () => {
+                    deshabilitarTodosLosBotones();
+
+                    const refObtenerDatosPedido = ref(database, `pedidosPendientes/pedido${pedido.id}/estadoPago`);
+
+                    const pagoRealizado = new PedidosPagadosService;
+
+                        const pedidoPagadoRef = ref(database, 'pedidosPagados');
+                        const actualizarCantidadPedidosPagadosRef = ref(database, 'pedidosPagados/cantidadPedidosPagados');
+    
+                        let fechaActual = new Date();
+                        const regExDias = /\d{2}/.exec(fechaActual);
+                        let mes = '';
+                        if(fechaActual.getMonth() + 1 < 10) {
+                            mes = '0';
+                            mes += fechaActual.getMonth() + 1;
+                        } else {
+                            mes += fechaActual.getMonth() + 1;
+                        }
+                        fechaActual = fechaActual.getFullYear() + '-' + mes + '-' + regExDias[0];
+                        console.log(fechaActual);
+    
+                        pagoRealizado.getCantidadPedidosPagados()
+                            .then(cantidad => {
+                                const pedidoPagado = {
+                                    id: cantidad + 1,
+                                    mesa: pedido.mesa,
+                                    fecha: fechaActual,
+                                    nombreCliente: pedido.nombreCliente,
+                                    montoTotal: pedido.montoTotal,
+                                    formaPago: document.getElementById(`formaPago${pedido.id}`).value
+                                };
+            
+                                console.log(pedidoPagado);
+                                setTimeout(() => {location.reload();}, 2000);
+                                
+                                set(pedidoPagadoRef, pedidoPagado);
+                                set(refObtenerDatosPedido, "pagado");
+                                set(actualizarCantidadPedidosPagadosRef, cantidad + 1);
+
+                                  
+                            })
+                            .catch(error => console.log(error));
+                })
             }
         })
 
     })
     .catch(error => console.log(error));
+
+    function deshabilitarTodosLosBotones() {
+        let botones = document.querySelectorAll('button');
+        botones.forEach(boton => {
+            boton.disabled = true;
+        })
+    }
