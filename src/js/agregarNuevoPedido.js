@@ -2,6 +2,8 @@ import { database } from './conexionBD.js';
 import { ref, set } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-database.js";
 import PedidosPendientesService from './pedidosPendientesService.js';
 
+const formularioPedidos = document.getElementById('formulario_para_pedidos');
+
 const inputMesa = document.getElementById('numero-mesa');
 const inputNombreCliente = document.getElementById('nombre-cliente');
 
@@ -46,6 +48,13 @@ function validarNombreCliente(comprobarNombreCliente) {
 
 botonConfirmarPedido.addEventListener('click', (evento) => {
     evento.preventDefault();
+    deshabilitarTodosLosBotones();
+
+    const mensajePedidoExitoso = document.createElement('h1');
+    mensajePedidoExitoso.innerText = 'Pedido agregado con éxito';
+    mensajePedidoExitoso.style.color = 'red';
+    formularioPedidos.appendChild(mensajePedidoExitoso);
+
     listaLegends.forEach( mensaje => {
         mensaje.innerText = "*";
         mensaje.style.color = 'black';
@@ -108,6 +117,7 @@ botonConfirmarPedido.addEventListener('click', (evento) => {
                     console.log(nuevoPedido);
                     
                     set(newPedidoRef, nuevoPedido);
+                    setTimeout(() => {location.reload();}, 3000);
                 })
                 .catch(error => console.log(error));
         }
@@ -117,3 +127,10 @@ botonConfirmarPedido.addEventListener('click', (evento) => {
     mesaCorrecto = false;
     nombreClienteCorrecto = false;
 });
+
+function deshabilitarTodosLosBotones() {
+    let botones = document.querySelectorAll('button');
+    botones.forEach(boton => {
+        boton.disabled = true;
+    })
+}
