@@ -1,0 +1,8 @@
+if(sessionStorage.getItem('rolUsuario') == 1) {
+    document.querySelector('#pedidos_pendientes').style.display = 'none';
+    document.querySelector('#reservas').style.display = 'none';
+    document.querySelector('#clientes').style.display = 'none';
+    document.querySelector('#ingresos').style.display = 'none';
+    document.querySelector('#cargar_consumicion').style.display = 'none';
+    document.querySelector('#registro').style.display = 'none';
+}
