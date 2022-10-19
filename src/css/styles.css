@@ -52,7 +52,6 @@ a {
   text-align: center;
   border: none;
   width: 100%;
-  margin-bottom: 10rem;
 }
 
 .btn:hover {
@@ -139,6 +138,20 @@ a:hover {
 /*Mesas Reservadas */
 .input-date {
   margin: 5rem 5rem 10rem 5rem;
+}
+
+.btn_margin-button {
+  display: block;
+  background-color: var(--main-color);
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 900;
+  padding: 1rem;
+  transition: background-color 0.3s ease-out;
+  text-align: center;
+  border: none;
+  width: 100%;
+  margin-bottom: 10rem;
 }
 
 /*Cargar Pedidos*/

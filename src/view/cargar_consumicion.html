@@ -3,23 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <title>Cargar Nueva Consumición</title>
+    <title>Cargar Nuevo Menú</title>
     <link rel="stylesheet" href="../css/normalize.css" />
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body>
     <header>
-      <h3 class="text-center">CHEF - Cargar Nueva Consumición</h3>
+      <h3 class="text-center">CHEF - Cargar Nuevo Menú</h3>
     </header>
 
     <div class="main-nav-container">
       <nav class="main-nav container">
         <a id="cargar_pedidos" href="cargar_pedidos.html">Cargar Pedido</a>
-        <a id="pedidos_pendientes" href="pedidos_pendientes.html">Pedidos Pendientes</a>
+        <a id="pedidos_pendientes" href="pedidos_pendientes.html"
+          >Pedidos Pendientes</a
+        >
         <a id="reservas" href="reservas.html">Mesas Reservadas</a>
         <a id="clientes" href="clientes.html">Listado Clientes</a>
         <a id="ingresos" href="ingresos.html">Informe de Ingresos</a>
-        <a id="cargar_consumicion" href="cargar_consumicion.html">Cargar Consumición</a>
+        <a id="cargar_consumicion" href="cargar_consumicion.html"
+          >Cargar Menú</a
+        >
         <a id="registro" href="registro.html">Registrar Usuario</a>
       </nav>
     </div>
@@ -27,7 +31,7 @@
     <section class="formulario">
       <form class="form">
         <fieldset id="fieldset-registro">
-          <legend class="legend">Nueva Consumición</legend>
+          <legend class="legend">Cargar Nuevo Menú</legend>
           <div class="field">
             <legend id="legend-obligatorio" class="legends-en-registro">
               Los campos con el símbolo * son obligatorios de rellenar
@@ -68,6 +72,14 @@
               placeholder="Precio"
               required
             />
+
+            <label>Seleccione la categoría: </label>
+            <select id="categoria-consumicion" required>
+              <option value="entrada">Entrada</option>
+              <option value="comida">Comida</option>
+              <option value="postre">Postre</option>
+              <option value="bebida">Bebida</option>
+            </select>
           </div>
         </fieldset>
         <a
