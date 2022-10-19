@@ -52,6 +52,7 @@ a {
   text-align: center;
   border: none;
   width: 100%;
+  margin-bottom: 10rem;
 }
 
 .btn:hover {
