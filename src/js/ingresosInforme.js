@@ -17,10 +17,11 @@ botonGenerarInforme.addEventListener('click', (evento) => {
     const contenedoresConsultasPrevias = document.querySelectorAll('.contenedorConsultaPago');
     const lineasDivisorias = document.querySelectorAll('.lineaDivisoria');
     if(document.getElementById('montoTotalConsulta') && document.getElementById('pdf_informe_ingresos')
-    && document.getElementById('aviso')) {
+    && document.getElementById('aviso') && document.getElementById('boton_seleccionar_todo')) {
         document.getElementById('montoTotalConsulta').remove();
         document.getElementById('pdf_informe_ingresos').remove();
         document.getElementById('aviso').remove();
+        document.getElementById('boton_seleccionar_todo').remove();
     }
     contenedoresConsultasPrevias.forEach( consulta => {
         consulta.remove();
@@ -73,7 +74,8 @@ botonGenerarInforme.addEventListener('click', (evento) => {
 
         const montoTotal = document.createElement('h1');
         montoTotal.id = "montoTotalConsulta";
-        montoTotal.innerText = `El total facturado durante el período es de: ${ingresoTotalPeriodo}`;
+        montoTotal.innerText = `El total facturado durante el período del 
+        ${inputFechaInicial.value} al ${inputFechaFinal.value} es de: ${ingresoTotalPeriodo}`;
         formulario.appendChild(montoTotal);
 
         const botonGenerarPDFInformeIngresos = document.createElement('button');
@@ -81,12 +83,46 @@ botonGenerarInforme.addEventListener('click', (evento) => {
         botonGenerarPDFInformeIngresos.id = "pdf_informe_ingresos";
         formulario.appendChild(botonGenerarPDFInformeIngresos);
 
+        const botonSeleccionarTodo = document.createElement('button');
+        botonSeleccionarTodo.id = "boton_seleccionar_todo";
+        botonSeleccionarTodo.style.padding = '10px;'
+        botonSeleccionarTodo.innerText = 'Agregar todos los subtotales';
+        formulario.appendChild(botonSeleccionarTodo);
+
+        const botonDeseleccionarTodo = document.createElement('button');
+        botonDeseleccionarTodo.id = "boton_deseleccionar_todo";
+        botonDeseleccionarTodo.style.padding = '10px;'
+        botonDeseleccionarTodo.innerText = 'Deseleccionar todos los subtotales';
+        formulario.appendChild(botonDeseleccionarTodo);
+
+        //Se genera el informe con los subtotales solicitados
+
         botonGenerarPDFInformeIngresos.addEventListener('click', (evento) => {
             evento.preventDefault();
             const listaCheckboxs = document.querySelectorAll('.input_type_checkbox');
             listaCheckboxs.forEach( pdfSolicitado => {
                 if(pdfSolicitado.checked) {
                     console.log(pdfSolicitado);
+                }
+            });
+        });
+
+        botonSeleccionarTodo.addEventListener('click', (evento) => {
+            evento.preventDefault();
+            const listaCheckboxs = document.querySelectorAll('.input_type_checkbox');
+            listaCheckboxs.forEach( pdfSolicitado => {
+                if(!pdfSolicitado.checked) {
+                    pdfSolicitado.checked = true;
+                }
+            });
+        });
+
+        botonDeseleccionarTodo.addEventListener('click', (evento) => {
+            evento.preventDefault();
+            const listaCheckboxs = document.querySelectorAll('.input_type_checkbox');
+            listaCheckboxs.forEach( pdfSolicitado => {
+                if(pdfSolicitado.checked) {
+                    pdfSolicitado.checked = false;
                 }
             });
         });
