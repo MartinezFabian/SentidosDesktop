@@ -15,11 +15,18 @@ botonGenerarInforme.addEventListener('click', (evento) => {
     console.log(inputFormaPago.value);
 
     const contenedoresConsultasPrevias = document.querySelectorAll('.contenedorConsultaPago');
-    if(document.getElementById('montoTotalConsulta')) {
+    const lineasDivisorias = document.querySelectorAll('.lineaDivisoria');
+    if(document.getElementById('montoTotalConsulta') && document.getElementById('pdf_informe_ingresos')
+    && document.getElementById('aviso')) {
         document.getElementById('montoTotalConsulta').remove();
+        document.getElementById('pdf_informe_ingresos').remove();
+        document.getElementById('aviso').remove();
     }
     contenedoresConsultasPrevias.forEach( consulta => {
         consulta.remove();
+    });
+    lineasDivisorias.forEach( linea => {
+        linea.remove();
     });
 
     const listaPagos = new PedidosPagadosService;
@@ -66,19 +73,61 @@ botonGenerarInforme.addEventListener('click', (evento) => {
 
         const montoTotal = document.createElement('h1');
         montoTotal.id = "montoTotalConsulta";
-        montoTotal.innerText = `El total facturado durante el período es de ${ingresoTotalPeriodo}`;
+        montoTotal.innerText = `El total facturado durante el período es de: ${ingresoTotalPeriodo}`;
         formulario.appendChild(montoTotal);
 
+        const botonGenerarPDFInformeIngresos = document.createElement('button');
+        botonGenerarPDFInformeIngresos.innerText = "Generar PDF del informe de ingresos";
+        botonGenerarPDFInformeIngresos.id = "pdf_informe_ingresos";
+        formulario.appendChild(botonGenerarPDFInformeIngresos);
+
+        botonGenerarPDFInformeIngresos.addEventListener('click', (evento) => {
+            evento.preventDefault();
+            const listaCheckboxs = document.querySelectorAll('.input_type_checkbox');
+            listaCheckboxs.forEach( pdfSolicitado => {
+                if(pdfSolicitado.checked) {
+                    console.log(pdfSolicitado);
+                }
+            });
+        });
+
+        const aviso = document.createElement('p');
+        aviso.id = 'aviso';
+        aviso.innerText = 'Marque las casillas de los subtotales que desea generar un PDF particular';
+        formulario.appendChild(aviso);
+
+        let numeroPagoEncontrado = 0;
+
         pagosDentroEspecificaciones.forEach( pago => {
+            const lineaDivisoria = document.createElement('p');
+            lineaDivisoria.className = "lineaDivisoria";
+            lineaDivisoria.innerText = "_";
+            lineaDivisoria.style.color = 'white';
+            lineaDivisoria.style.backgroundColor = 'gray';
+            lineaDivisoria.style.height = '10px';
+            formulario.appendChild(lineaDivisoria);
+
+            numeroPagoEncontrado++;
             const contenedorPago = document.createElement('div');
             contenedorPago.className = 'contenedorConsultaPago';
 
             const subTotal = document.createElement('p');
-            subTotal.innerText = `$${pago.montoTotal}`;
+            subTotal.id = `pago_encontrado_numero${numeroPagoEncontrado}`;
+            subTotal.innerText = `El subtotal ${numeroPagoEncontrado} es $${pago.montoTotal}`;
             contenedorPago.appendChild(subTotal);
             const fechaPago = document.createElement('h3');
             fechaPago.innerText = `Pagados el día ${pago.fecha} en la mesa ${pago.mesa}`;
             contenedorPago.appendChild(fechaPago);
+            
+            const inputGenerarPDFPagoSubtotal = document.createElement('input');
+            inputGenerarPDFPagoSubtotal.type = "checkbox";
+            inputGenerarPDFPagoSubtotal.className = "input_type_checkbox";
+            inputGenerarPDFPagoSubtotal.id = `checkbox_pdf_informe_subtotal_numero${numeroPagoEncontrado}`;
+            contenedorPago.appendChild(inputGenerarPDFPagoSubtotal);
+
+            const indicacionPDFSubtotal = document.createElement('p');
+            indicacionPDFSubtotal.innerText = 'Generar PDF del Subtotal';
+            contenedorPago.appendChild(indicacionPDFSubtotal);
 
             formulario.appendChild(contenedorPago);
         });
