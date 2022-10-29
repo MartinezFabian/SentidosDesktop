@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
     <link rel="stylesheet" href="../css/normalize.css" />
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/ajustarContenedorMenu.css" />
   </head>
   <body>
     <header>
@@ -30,9 +31,20 @@
       </nav>
     </div>
 
-    <section id="menu" class="menu" style="width: 600px;">
-        <div id="container_menu"></div>
-      </section>
+    <div id="contenedor-busqueda-productos">
+      <section id="menu" class="menu" style="width: 600px;">
+          <label>Seleccione la categoría de productos que desea ver: </label>
+          <select id="categoria-productos" required>
+            <option value="todo">Todo</option>
+            <option value="comida">Comida</option>
+            <option value="postre">Postre</option>
+            <option value="bebida">Bebida</option>
+          </select>
+          <button id="boton-buscar-categoria" class="btn">Buscar por Categoría</button>
+          <div id="container_menu"></div>
+        </section>    
+    </div>
+
   </body>
   <script type="module" src="../js/listarMenu.js"></script>
   <script src="../js/restringirPorRol.js"></script>
