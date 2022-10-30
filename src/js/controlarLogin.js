@@ -34,7 +34,7 @@ botonIngresar.addEventListener('click', (evento) => {
                     }
                     if(usuarioRegistrado.rol == 'chef') {
                         sessionStorage.setItem('rolUsuario', 4);
-                        location.href ='../view/cargar_pedidos.html';
+                        location.href ='../view/cargar_consumicion.html';
                     }
                     if(usuarioRegistrado.rol == 'dueño') {
                         location.href ='../view/ingresos.html';
