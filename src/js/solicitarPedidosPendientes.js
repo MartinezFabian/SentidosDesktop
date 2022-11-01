@@ -115,13 +115,15 @@ listaPedidosPendientes.getPedidosPendientes()
                                 set(actualizarCantidadPedidosPagadosRef, cantidad + 1);
 
                                 const doc = new jsPDF();
-                                doc.text(`Factura Numero: ${cantidad + 1}`, 20, 10);
-                                doc.text(`Fecha: ${fechaActual}`, 20, 20);
-                                doc.text(`Mesa Numero: ${pedido.mesa}`, 20, 30);
-                                doc.text(`Monto total: ${pedido.montoTotal}`, 20, 40);
-                                doc.text(`Nombre del cliente: ${pedido.nombreCliente}`, 20, 50);
-                                doc.text(`Forma de pago: ${document.getElementById(`formaPago${pedido.id}`).value}`, 20, 60);
-                                doc.save(`factura${cantidad + 1}.pdf`);
+                                doc.text(`Restaurante Sentidos S.R.L`, 20, 10);
+                                doc.text(`Factura a Consumidor Final`, 20, 20);
+                                doc.text(`Factura Numero: ${cantidad + 1}`, 20, 30);
+                                doc.text(`Fecha: ${fechaActual}`, 20, 40);
+                                doc.text(`Mesa Numero: ${pedido.mesa}`, 20, 50);
+                                doc.text(`Monto total: ${pedido.montoTotal}`, 20, 60);
+                                doc.text(`Nombre del cliente: ${pedido.nombreCliente}`, 20, 70);
+                                doc.text(`Forma de pago: ${document.getElementById(`formaPago${pedido.id}`).value}`, 20, 80);
+                                doc.save(`factura${cantidad + 1}RestauranteSentidos.pdf`);
                             })
                             .catch(error => console.log(error));
                 })

@@ -41,27 +41,103 @@ botonGenerarInforme.addEventListener('click', (evento) => {
 
         let pagosDentroEspecificaciones = [];
         let indice = 0;
-        const regEx = /\d{2}$/;
+        const regExFechas = /\d{2}/g;
         
-        let diasInputFechaInicial = regEx.exec(inputFechaInicial.value);
-        let diasInputFechaFinal = regEx.exec(inputFechaFinal.value);
-        console.log('dias fecha inicial: ' + diasInputFechaInicial[0]);
-        console.log('dias fecha final: ' + diasInputFechaFinal[0]);
+        let diasInputFechaInicial = inputFechaInicial.value.match(regExFechas);
+        let diasInputFechaFinal = inputFechaFinal.value.match(regExFechas);
+        console.log('dias fecha inicial: ' + diasInputFechaInicial[3]);
+        console.log('dias fecha final: ' + diasInputFechaFinal[3]);
+
+        let mesInputFechaInicial = diasInputFechaInicial[2];
+        let mesInputFechaFinal = diasInputFechaFinal[2];
+        console.log('mes fecha inicial: ' + diasInputFechaInicial[2]);
+        console.log('mes fecha final: ' + diasInputFechaFinal[2]);
+
+        function aislarDias(dias) {
+            if(dias[0] == '0') {
+                return parseInt(dias[1]);
+            } else {
+                return parseInt(dias);
+            }
+        }
+        
+        function aislarMes(mes) {
+            if(mes[0] == '0') {
+                return parseInt(mes[1]);
+            } else {
+                return parseInt(mes);
+            }
+        }
 
         listaPagos.forEach( pago => {
 
             if(pago.fecha != undefined) {
                 console.log(pago.fecha);
-                let diasFechaPago = regEx.exec(pago.fecha);
-                console.log('dias fecha pago: ' + diasFechaPago[0]);
-            
-                if(pago.formaPago == inputFormaPago.value &&
-                   parseInt(diasFechaPago[0]) <= parseInt(diasInputFechaFinal[0]) &&
-                   parseInt(diasFechaPago[0]) >= parseInt(diasInputFechaInicial[0])) {
-                    
+                let diasFechaPago = pago.fecha.match(regExFechas);
+                console.log('dias fecha pago: ' + diasFechaPago[3]);
+                let mesFechaPago = diasFechaPago[2]
+                console.log('mes fecha pago: ' + mesFechaPago);
 
-                    pagosDentroEspecificaciones[indice] = pago;
-                    indice++;
+                if(pago.formaPago == inputFormaPago.value) {
+                    
+                    /*//Se comparan las fechas de los meses
+                    if(parseInt(mesFechaPago) <= parseInt(mesInputFechaFinal)
+                        && parseInt(mesFechaPago) >= parseInt(mesInputFechaInicial)) {
+                            console.log('pasa correctamente el mes.');
+                        //Se comparan las fechas de los dias
+                        if(parseInt(diasFechaPago[3]) <= parseInt(diasInputFechaFinal[3]) &&
+                           parseInt(diasFechaPago[3]) >= parseInt(diasInputFechaInicial[3])) {
+                            console.log('pasa correctamente el dia.');
+                            
+                            pagosDentroEspecificaciones[indice] = pago;
+                            indice++;
+                        }
+                    }*/
+
+                    //Se comparan las fechas de los meses
+                    if(aislarMes(mesInputFechaInicial) == aislarMes(mesInputFechaFinal) &&
+                    aislarMes(mesFechaPago) == aislarMes(mesInputFechaInicial)) {
+                        //Se comparan las fechas de los dias
+                        if(aislarDias(diasFechaPago[3]) >= aislarDias(diasInputFechaInicial[3]) &&
+                        aislarDias(diasFechaPago[3]) <= aislarDias(diasInputFechaFinal[3])) {
+
+                            console.log('pasa correctamente el dia.');
+                            
+                            pagosDentroEspecificaciones[indice] = pago;
+                            indice++;
+
+                        }
+                    } else if(aislarMes(mesFechaPago) <= aislarMes(mesInputFechaFinal)
+                        && aislarMes(mesFechaPago) >= aislarMes(mesInputFechaInicial)) {
+                            console.log('pasa correctamente el mes.');
+                            console.log('dias del pago: ' + aislarDias(diasFechaPago[3]));
+                            console.log('dias de la fecha inicial: ' + aislarDias(diasInputFechaInicial[3]));
+                            console.log('dias de la fecha final: ' + aislarDias(diasInputFechaFinal[3]));
+                        //Se comparan las fechas de los dias
+                        if(aislarMes(mesFechaPago) == aislarMes(mesInputFechaInicial) &&
+                        aislarDias(diasFechaPago[3]) >= aislarDias(diasInputFechaInicial[3])) {
+
+                            console.log('pasa correctamente el dia.');
+                            
+                            pagosDentroEspecificaciones[indice] = pago;
+                            indice++;
+
+                        } else if(aislarMes(mesFechaPago) == aislarMes(mesInputFechaFinal) &&
+                        aislarDias(diasFechaPago[3]) <= aislarDias(diasInputFechaFinal[3])) {
+
+                            console.log('pasa correctamente el dia.');
+                            
+                            pagosDentroEspecificaciones[indice] = pago;
+                            indice++;
+
+                        } else if(aislarMes(mesFechaPago) < aislarMes(mesInputFechaFinal) &&
+                        aislarMes(mesFechaPago) > aislarMes(mesInputFechaInicial)) {
+                            console.log('no es mes inicial o final, asi que entra en el periodo.');
+                            
+                            pagosDentroEspecificaciones[indice] = pago;
+                            indice++;
+                        }
+                    }
                 }
             }
         });
