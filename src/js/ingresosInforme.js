@@ -8,11 +8,15 @@ const inputFormaPago = document.getElementById('forma_pago');
 
 const botonGenerarInforme = document.getElementById('btn_generar_informe');
 
+const labelMensajeError = document.getElementById('mensaje_error');
+
 botonGenerarInforme.addEventListener('click', (evento) => {
     evento.preventDefault();
     console.log(inputFechaInicial.value);
     console.log(inputFechaFinal.value);
     console.log(inputFormaPago.value);
+
+    labelMensajeError.innerText = '';
 
     const contenedoresConsultasPrevias = document.querySelectorAll('.contenedorConsultaPago');
     const lineasDivisorias = document.querySelectorAll('.lineaDivisoria');
@@ -32,7 +36,12 @@ botonGenerarInforme.addEventListener('click', (evento) => {
         linea.remove();
     });
 
-    const listaPagos = new PedidosPagadosService;
+    const regExAno = /\d{4}/;
+    const anoInicio = inputFechaInicial.value.match(regExAno);
+    const anoFinal = inputFechaFinal.value.match(regExAno);
+
+    if(parseInt(anoInicio) == 2022 && parseInt(anoFinal) == 2022) {
+        const listaPagos = new PedidosPagadosService;
 
     listaPagos.getPedidosPedidosPagados()
     .then( pagos => {
@@ -262,4 +271,9 @@ botonGenerarInforme.addEventListener('click', (evento) => {
         });
     })
     .catch(error => console.log(error));
+    } else {
+        labelMensajeError.innerText = 'Alguna de las fechas excede o esta por debajo del rango de años registrados posibles.';
+        labelMensajeError.style.color = 'red';
+        labelMensajeError.style.fontSize = '32px';
+    }
 });

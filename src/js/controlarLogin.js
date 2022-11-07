@@ -59,11 +59,12 @@ botonIngresar.addEventListener('click', (evento) => {
                         throw BreakError;
                 }
 
-                if(labelContrasena.innerText != "") {
-                    labelUsuario.innerText = 'No se ha encontrado un usuario con ese nombre de usuario.'
-                    labelUsuario.style.color = 'red';
-                }
-        })
+            })
+            
+            if(labelContrasena.innerText != "" || inputContrasena.value != "") {
+                labelUsuario.innerText = 'No se ha encontrado un usuario con ese nombre de usuario.'
+                labelUsuario.style.color = 'red';
+            }
     })
     .catch(error => console.log(error));
 });
