@@ -1,16 +1,19 @@
 {
   "name": "sentidosdesktop",
   "version": "1.0.0",
-  "description": "",
+  "description": "Aplicacion Desktop Restaurante Sentidos",
   "main": "src/js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder",
+    "build-windows": "electron-builder -w"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^21.1.0"
+    "electron": "^21.1.0",
+    "electron-builder": "^23.6.0"
   }
 }
