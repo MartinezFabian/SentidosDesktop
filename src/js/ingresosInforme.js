@@ -159,118 +159,126 @@ botonGenerarInforme.addEventListener('click', (evento) => {
             ingresoTotalPeriodo += parseInt(pago.montoTotal);
         });
 
-        const montoTotal = document.createElement('h1');
-        montoTotal.id = "montoTotalConsulta";
-        montoTotal.innerText = `El total facturado durante el período del 
-        ${inputFechaInicial.value} al ${inputFechaFinal.value} es de: ${ingresoTotalPeriodo}`;
-        formulario.appendChild(montoTotal);
+        if(pagosDentroEspecificaciones.length == 0) {
+            labelMensajeError.innerText = 'No se encontraton resultados.';
+            labelMensajeError.style.color = 'red';
+            labelMensajeError.style.fontSize = '32px';
+        } else {
+            const montoTotal = document.createElement('h1');
+            montoTotal.id = "montoTotalConsulta";
+            montoTotal.innerText = `El total facturado durante el período del 
+            ${inputFechaInicial.value} al ${inputFechaFinal.value} es de: ${ingresoTotalPeriodo}`;
+            formulario.appendChild(montoTotal);
 
-        const botonGenerarPDFInformeIngresos = document.createElement('button');
-        botonGenerarPDFInformeIngresos.innerText = "Generar PDF del informe de ingresos";
-        botonGenerarPDFInformeIngresos.id = "pdf_informe_ingresos";
-        formulario.appendChild(botonGenerarPDFInformeIngresos);
+            const botonGenerarPDFInformeIngresos = document.createElement('button');
+            botonGenerarPDFInformeIngresos.innerText = "Generar PDF del informe de ingresos";
+            botonGenerarPDFInformeIngresos.id = "pdf_informe_ingresos";
+            formulario.appendChild(botonGenerarPDFInformeIngresos);
 
-        const botonSeleccionarTodo = document.createElement('button');
-        botonSeleccionarTodo.id = "boton_seleccionar_todo";
-        botonSeleccionarTodo.innerText = 'Agregar todos los subtotales';
-        formulario.appendChild(botonSeleccionarTodo);
+            const botonSeleccionarTodo = document.createElement('button');
+            botonSeleccionarTodo.id = "boton_seleccionar_todo";
+            botonSeleccionarTodo.innerText = 'Agregar todos los subtotales';
+            formulario.appendChild(botonSeleccionarTodo);
 
-        const botonDeseleccionarTodo = document.createElement('button');
-        botonDeseleccionarTodo.id = "boton_deseleccionar_todo";
-        botonDeseleccionarTodo.innerText = 'Deseleccionar todos los subtotales';
-        formulario.appendChild(botonDeseleccionarTodo);
+            const botonDeseleccionarTodo = document.createElement('button');
+            botonDeseleccionarTodo.id = "boton_deseleccionar_todo";
+            botonDeseleccionarTodo.innerText = 'Deseleccionar todos los subtotales';
+            formulario.appendChild(botonDeseleccionarTodo);
 
-        //Se genera el informe con los subtotales solicitados
+            //Se genera el informe con los subtotales solicitados
 
-        botonGenerarPDFInformeIngresos.addEventListener('click', (evento) => {
-            evento.preventDefault();
+            botonGenerarPDFInformeIngresos.addEventListener('click', (evento) => {
+                evento.preventDefault();
 
-            const doc = new jsPDF();
-            doc.text('Informe de ingresos', 20, 15);
-            doc.text(`${montoTotal.innerText}`, 20, 30);
+                const doc = new jsPDF();
+                doc.text('Informe de ingresos', 20, 15);
+                doc.text(`${montoTotal.innerText}`, 20, 30);
 
-            let nuevaLinea = 30;
+                let nuevaLinea = 30;
 
-            const listaCheckboxs = document.querySelectorAll('.input_type_checkbox');
-            listaCheckboxs.forEach( pdfSolicitado => {
-                if(pdfSolicitado.checked) {
-                    nuevaLinea += 15;
-                    let lineaDivisoria = '-';
-                    for(let i = 0; i < 5; i++) {
-                        lineaDivisoria += lineaDivisoria;
+                const listaCheckboxs = document.querySelectorAll('.input_type_checkbox');
+                listaCheckboxs.forEach( pdfSolicitado => {
+                    if(pdfSolicitado.checked) {
+                        nuevaLinea += 15;
+                        let lineaDivisoria = '-';
+                        for(let i = 0; i < 5; i++) {
+                            lineaDivisoria += lineaDivisoria;
+                        }
+                        doc.text(`${lineaDivisoria}`, 20, nuevaLinea);
+                        nuevaLinea += 15;
+                        doc.text(`${pdfSolicitado.value}`, 20, nuevaLinea);
                     }
-                    doc.text(`${lineaDivisoria}`, 20, nuevaLinea);
-                    nuevaLinea += 15;
-                    doc.text(`${pdfSolicitado.value}`, 20, nuevaLinea);
-                }
+                });
+
+                doc.save(`InformeIngresos.pdf`);
             });
 
-            doc.save(`InformeIngresos.pdf`);
-        });
-
-        botonSeleccionarTodo.addEventListener('click', (evento) => {
-            evento.preventDefault();
-            const listaCheckboxs = document.querySelectorAll('.input_type_checkbox');
-            listaCheckboxs.forEach( pdfSolicitado => {
-                if(!pdfSolicitado.checked) {
-                    pdfSolicitado.checked = true;
-                }
+            botonSeleccionarTodo.addEventListener('click', (evento) => {
+                evento.preventDefault();
+                const listaCheckboxs = document.querySelectorAll('.input_type_checkbox');
+                listaCheckboxs.forEach( pdfSolicitado => {
+                    if(!pdfSolicitado.checked) {
+                        pdfSolicitado.checked = true;
+                    }
+                });
             });
-        });
 
-        botonDeseleccionarTodo.addEventListener('click', (evento) => {
-            evento.preventDefault();
-            const listaCheckboxs = document.querySelectorAll('.input_type_checkbox');
-            listaCheckboxs.forEach( pdfSolicitado => {
-                if(pdfSolicitado.checked) {
-                    pdfSolicitado.checked = false;
-                }
+            botonDeseleccionarTodo.addEventListener('click', (evento) => {
+                evento.preventDefault();
+                const listaCheckboxs = document.querySelectorAll('.input_type_checkbox');
+                listaCheckboxs.forEach( pdfSolicitado => {
+                    if(pdfSolicitado.checked) {
+                        pdfSolicitado.checked = false;
+                    }
+                });
             });
-        });
 
-        const aviso = document.createElement('p');
-        aviso.id = 'aviso';
-        aviso.innerText = 'Marque las casillas de los subtotales que desea generar un PDF particular';
-        formulario.appendChild(aviso);
+            const aviso = document.createElement('p');
+            aviso.id = 'aviso';
+            aviso.innerText = 'Marque las casillas de los subtotales que desea generar un PDF particular';
+            formulario.appendChild(aviso);
 
-        let numeroPagoEncontrado = 0;
+            let numeroPagoEncontrado = 0;
 
-        pagosDentroEspecificaciones.forEach( pago => {
-            const lineaDivisoria = document.createElement('p');
-            lineaDivisoria.className = "lineaDivisoria";
-            lineaDivisoria.innerText = "_";
-            lineaDivisoria.style.color = 'white';
-            lineaDivisoria.style.backgroundColor = 'gray';
-            lineaDivisoria.style.height = '10px';
-            formulario.appendChild(lineaDivisoria);
+            pagosDentroEspecificaciones.forEach( pago => {
+                const lineaDivisoria = document.createElement('p');
+                lineaDivisoria.className = "lineaDivisoria";
+                lineaDivisoria.innerText = "_";
+                lineaDivisoria.style.color = 'white';
+                lineaDivisoria.style.backgroundColor = 'gray';
+                lineaDivisoria.style.height = '10px';
+                formulario.appendChild(lineaDivisoria);
 
-            numeroPagoEncontrado++;
-            const contenedorPago = document.createElement('div');
-            contenedorPago.className = 'contenedorConsultaPago';
+                numeroPagoEncontrado++;
+                const contenedorPago = document.createElement('div');
+                contenedorPago.className = 'contenedorConsultaPago';
 
-            const subTotal = document.createElement('p');
-            subTotal.id = `pago_encontrado_numero${numeroPagoEncontrado}`;
-            subTotal.innerText = `El subtotal ${numeroPagoEncontrado} es $${pago.montoTotal}`;
-            contenedorPago.appendChild(subTotal);
-            const fechaPago = document.createElement('h3');
-            fechaPago.innerText = `Pagados el día ${pago.fecha} en la mesa ${pago.mesa}`;
-            contenedorPago.appendChild(fechaPago);
-            
-            const inputGenerarPDFPagoSubtotal = document.createElement('input');
-            inputGenerarPDFPagoSubtotal.type = "checkbox";
-            inputGenerarPDFPagoSubtotal.className = "input_type_checkbox";
-            inputGenerarPDFPagoSubtotal.id = `checkbox_pdf_informe_subtotal_numero${numeroPagoEncontrado}`;
-            inputGenerarPDFPagoSubtotal.value = `El subtotal ${numeroPagoEncontrado} es $${pago.montoTotal} \npagados el día ${pago.fecha} en la mesa ${pago.mesa}`;
-            contenedorPago.appendChild(inputGenerarPDFPagoSubtotal);
+                const subTotal = document.createElement('p');
+                subTotal.id = `pago_encontrado_numero${numeroPagoEncontrado}`;
+                subTotal.innerText = `El subtotal ${numeroPagoEncontrado} es $${pago.montoTotal}`;
+                contenedorPago.appendChild(subTotal);
+                const fechaPago = document.createElement('h3');
+                fechaPago.innerText = `Pagados el día ${pago.fecha} en la mesa ${pago.mesa}`;
+                contenedorPago.appendChild(fechaPago);
+                
+                const inputGenerarPDFPagoSubtotal = document.createElement('input');
+                inputGenerarPDFPagoSubtotal.type = "checkbox";
+                inputGenerarPDFPagoSubtotal.className = "input_type_checkbox";
+                inputGenerarPDFPagoSubtotal.id = `checkbox_pdf_informe_subtotal_numero${numeroPagoEncontrado}`;
+                inputGenerarPDFPagoSubtotal.value = `El subtotal ${numeroPagoEncontrado} es $${pago.montoTotal} \npagados el día ${pago.fecha} en la mesa ${pago.mesa}`;
+                contenedorPago.appendChild(inputGenerarPDFPagoSubtotal);
 
-            const indicacionPDFSubtotal = document.createElement('p');
-            indicacionPDFSubtotal.innerText = 'Generar PDF del Subtotal';
-            contenedorPago.appendChild(indicacionPDFSubtotal);
+                const indicacionPDFSubtotal = document.createElement('p');
+                indicacionPDFSubtotal.innerText = 'Generar PDF del Subtotal';
+                contenedorPago.appendChild(indicacionPDFSubtotal);
 
-            formulario.appendChild(contenedorPago);
-        });
+                formulario.appendChild(contenedorPago);
+            });
+        }
+
     })
     .catch(error => console.log(error));
+
     } else {
         labelMensajeError.innerText = 'Alguna de las fechas excede o esta por debajo del rango de años registrados posibles.';
         labelMensajeError.style.color = 'red';
